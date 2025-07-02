@@ -3,23 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>接龙AI助手 - 微信智能信息收集工具</title>
+    <title>接龙AI助手 - 智能信息收集工具</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --wechat-green: #07C160;
-            --wechat-dark-green: #06AD56;
-            --wechat-light-green: #E7F8F0;
-            --wechat-chat-bg: #EBEBEB;
-            --text-dark: #333;
-            --text-medium: #666;
-            --text-light: #999;
-            --border: #E0E0E0;
-            --card-bg: #FFFFFF;
-            --section-bg: #F9F9F9;
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            --transition: all 0.3s ease;
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #f8fafc;
+            --accent: #f59e0b;
+            --text: #334155;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
         
         * {
@@ -31,9 +27,8 @@
         body {
             font-family: 'Noto Sans SC', sans-serif;
             line-height: 1.6;
-            color: var(--text-dark);
-            background-color: var(--section-bg);
-            overflow-x: hidden;
+            color: var(--text);
+            background-color: #f1f5f9;
         }
         
         .container {
@@ -45,7 +40,7 @@
         
         /* Header Styles */
         header {
-            background: var(--wechat-green);
+            background: linear-gradient(135deg, var(--primary), #3b82f6);
             color: white;
             padding: 15px 0;
             position: sticky;
@@ -67,20 +62,13 @@
         }
         
         .logo-icon {
-            width: 48px;
-            height: 48px;
-            background: white;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            width: 42px;
+            height: 42px;
         }
         
         .logo-text {
             font-size: 1.8rem;
             font-weight: 700;
-            color: white;
         }
         
         nav ul {
@@ -94,7 +82,7 @@
             text-decoration: none;
             font-weight: 500;
             font-size: 1.1rem;
-            transition: var(--transition);
+            transition: all 0.3s ease;
             padding: 5px 10px;
             border-radius: 4px;
         }
@@ -105,8 +93,8 @@
         
         /* Hero Section */
         .hero {
-            padding: 100px 0;
-            background: linear-gradient(135deg, var(--wechat-green), var(--wechat-dark-green));
+            padding: 80px 0;
+            background: linear-gradient(to right, #eff6ff, #dbeafe);
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -115,97 +103,61 @@
         .hero::before {
             content: "";
             position: absolute;
-            top: 0;
-            left: 0;
+            top: -50%;
+            right: -50%;
             width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect x="0" y="0" width="200" height="200" fill="none" stroke="white" stroke-width="1" stroke-opacity="0.1" stroke-dasharray="10,10"/></svg>');
-            background-size: 80px 80px;
-            opacity: 0.15;
+            height: 200%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="50" cy="50" r="10" fill="%233b82f6" opacity="0.1"/><circle cx="150" cy="100" r="15" fill="%233b82f6" opacity="0.1"/><circle cx="80" cy="180" r="8" fill="%233b82f6" opacity="0.1"/></svg>');
+            background-size: 200px 200px;
+            transform: rotate(30deg);
             z-index: 0;
         }
         
         .hero-content {
             position: relative;
-            z-index: 2;
-            max-width: 900px;
+            z-index: 1;
+            max-width: 800px;
             margin: 0 auto;
         }
         
         .hero h1 {
             font-size: 3.2rem;
             margin-bottom: 20px;
-            color: white;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+            color: var(--primary-dark);
         }
         
         .hero p {
             font-size: 1.3rem;
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--text);
             margin-bottom: 30px;
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
         }
         
-        .ai-highlight {
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50px;
-            padding: 8px 20px;
-            display: inline-block;
-            margin: 15px 0;
-            font-weight: 500;
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-        
         .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background-color: white;
-            color: var(--wechat-green);
-            padding: 16px 36px;
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 14px 32px;
             font-size: 1.2rem;
             font-weight: 600;
             text-decoration: none;
             border-radius: 50px;
-            transition: var(--transition);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
         }
         
         .cta-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-        }
-        
-        .wechat-qr {
-            margin-top: 50px;
-            background: white;
-            border-radius: 20px;
-            padding: 20px;
-            display: inline-block;
-            box-shadow: var(--shadow);
-        }
-        
-        .wechat-qr img {
-            width: 180px;
-            height: 180px;
-            display: block;
-            margin: 0 auto;
-        }
-        
-        .wechat-qr p {
-            margin-top: 15px;
-            color: var(--text-dark);
-            font-weight: 500;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+            background-color: #e69008;
         }
         
         /* Features Section */
         .features {
             padding: 100px 0;
-            background-color: var(--section-bg);
+            background-color: white;
         }
         
         .section-title {
@@ -215,7 +167,7 @@
         
         .section-title h2 {
             font-size: 2.5rem;
-            color: var(--wechat-dark-green);
+            color: var(--primary-dark);
             margin-bottom: 15px;
             position: relative;
             display: inline-block;
@@ -229,12 +181,12 @@
             transform: translateX(-50%);
             width: 80px;
             height: 4px;
-            background-color: var(--wechat-green);
+            background-color: var(--accent);
             border-radius: 2px;
         }
         
         .section-title p {
-            color: var(--text-medium);
+            color: var(--text-light);
             font-size: 1.2rem;
             max-width: 700px;
             margin: 20px auto 0;
@@ -242,183 +194,53 @@
         
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
             margin-top: 50px;
         }
         
         .feature-card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 35px 30px;
+            background: white;
+            border-radius: 12px;
+            padding: 35px 25px;
             text-align: center;
             box-shadow: var(--shadow);
-            transition: var(--transition);
+            transition: all 0.3s ease;
             border: 1px solid var(--border);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .feature-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: var(--wechat-green);
         }
         
         .feature-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
         
         .feature-icon {
-            width: 80px;
-            height: 80px;
+            width: 70px;
+            height: 70px;
             margin: 0 auto 25px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--wechat-light-green);
-            border-radius: 20px;
-            color: var(--wechat-green);
-            font-size: 36px;
-            transition: var(--transition);
-        }
-        
-        .feature-card:hover .feature-icon {
-            background: var(--wechat-green);
-            color: white;
+            background: #dbeafe;
+            border-radius: 50%;
+            color: var(--primary);
+            font-size: 30px;
         }
         
         .feature-card h3 {
             font-size: 1.5rem;
             margin-bottom: 15px;
-            color: var(--wechat-dark-green);
+            color: var(--primary-dark);
         }
         
         .feature-card p {
-            color: var(--text-medium);
-            margin-bottom: 20px;
-        }
-        
-        .ai-badge {
-            display: inline-block;
-            background: var(--wechat-light-green);
-            color: var(--wechat-green);
-            padding: 4px 12px;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-        
-        /* AI Advantage Section */
-        .ai-advantage {
-            padding: 100px 0;
-            background: linear-gradient(135deg, var(--wechat-light-green), white);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .ai-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 60px;
-        }
-        
-        .ai-text {
-            flex: 1;
-            min-width: 300px;
-        }
-        
-        .ai-text h2 {
-            font-size: 2.5rem;
-            color: var(--wechat-dark-green);
-            margin-bottom: 30px;
-        }
-        
-        .ai-text ul {
-            list-style: none;
-            margin-top: 30px;
-        }
-        
-        .ai-text li {
-            margin-bottom: 25px;
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-        }
-        
-        .ai-text li i {
-            color: var(--wechat-green);
-            font-size: 1.5rem;
-            min-width: 30px;
-        }
-        
-        .ai-text li strong {
-            color: var(--wechat-dark-green);
-        }
-        
-        .ai-visual {
-            flex: 1;
-            min-width: 300px;
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: var(--shadow);
-            position: relative;
-        }
-        
-        .chat-container {
-            background: var(--wechat-chat-bg);
-            border-radius: 12px;
-            padding: 20px;
-            font-family: 'Noto Sans SC', sans-serif;
-        }
-        
-        .chat-message {
-            max-width: 80%;
-            padding: 12px 16px;
-            border-radius: 18px;
-            margin-bottom: 15px;
-            position: relative;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        .received {
-            background: white;
-            border-bottom-left-radius: 4px;
-            align-self: flex-start;
-        }
-        
-        .sent {
-            background: var(--wechat-green);
-            color: white;
-            border-bottom-right-radius: 4px;
-            margin-left: auto;
-        }
-        
-        .ai-tag {
-            position: absolute;
-            top: -10px;
-            right: 20px;
-            background: var(--wechat-green);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            font-weight: 600;
+            color: var(--text-light);
         }
         
         /* How It Works */
         .how-it-works {
             padding: 100px 0;
-            background-color: white;
+            background-color: var(--secondary);
         }
         
         .steps {
@@ -438,36 +260,34 @@
         }
         
         .step-number {
-            width: 60px;
-            height: 60px;
-            background: var(--wechat-green);
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
+            font-size: 1.4rem;
             font-weight: bold;
             margin: 0 auto 25px;
-            box-shadow: 0 4px 10px rgba(7, 193, 96, 0.3);
         }
         
         .step h3 {
             font-size: 1.4rem;
             margin-bottom: 15px;
-            color: var(--wechat-dark-green);
+            color: var(--primary-dark);
         }
         
         .step p {
-            color: var(--text-medium);
+            color: var(--text-light);
         }
         
         /* Footer */
         footer {
-            background: var(--wechat-dark-green);
+            background: var(--primary-dark);
             color: white;
-            padding: 80px 0 40px;
-            position: relative;
+            padding: 60px 0 30px;
         }
         
         .footer-content {
@@ -521,16 +341,10 @@
         
         .copyright {
             text-align: center;
-            padding-top: 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             opacity: 0.8;
             font-size: 0.95rem;
-        }
-        
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
         }
         
         /* Responsive */
@@ -561,10 +375,6 @@
             .features-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .ai-content {
-                flex-direction: column;
-            }
         }
     </style>
 </head>
@@ -574,19 +384,16 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <div class="logo-icon">
-                        <svg width="32" height="32" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="0" y="0" width="100" height="100" rx="15" fill="#07C160"/>
-                            <path d="M30,35 L40,50 L50,35 L60,50 L70,35" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                            <circle cx="50" cy="70" r="8" fill="white"/>
-                        </svg>
-                    </div>
+                    <svg class="logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="10" y="10" width="80" height="80" rx="15" fill="#3b82f6" />
+                        <path d="M30,40 L40,55 L50,40 L60,55 L70,40" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                        <circle cx="50" cy="70" r="5" fill="#f59e0b" />
+                    </svg>
                     <div class="logo-text">接龙AI助手</div>
                 </div>
                 <nav>
                     <ul>
-                        <li><a href="#features">核心功能</a></li>
-                        <li><a href="#ai">AI优势</a></li>
+                        <li><a href="#features">功能</a></li>
                         <li><a href="#how-it-works">使用说明</a></li>
                         <li><a href="#contact">联系我们</a></li>
                     </ul>
@@ -599,21 +406,9 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>微信智能接龙助手</h1>
-                <p>专为微信群设计的AI接龙工具，让信息收集从未如此简单高效</p>
-                
-                <div class="ai-highlight">
-                    <i class="fas fa-robot"></i> AI智能生成接龙内容，一键创建，自动整理
-                </div>
-                
-                <a href="#contact" class="cta-button">
-                    <i class="fab fa-weixin"></i> 立即体验小程序
-                </a>
-                
-                <div class="wechat-qr">
-                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'><rect width='180' height='180' fill='%23f0f0f0'/><path d='M45,45 L45,135 L135,135 L135,45 Z' fill='%2307C160'/><text x='90' y='100' font-family='Arial' font-size='20' fill='white' text-anchor='middle'>微信扫一扫</text></svg>" alt="微信小程序码">
-                    <p>微信扫一扫立即体验</p>
-                </div>
+                <h1>让信息收集更智能</h1>
+                <p>接龙AI助手是专为班级群、工作群、学习群设计的智能工具，提供接龙、问卷、报名、打卡、填表、投票等一站式信息收集解决方案</p>
+                <a href="#contact" class="cta-button">立即体验</a>
             </div>
         </div>
     </section>
@@ -623,44 +418,40 @@
         <div class="container">
             <div class="section-title">
                 <h2>核心功能</h2>
-                <p>专为微信群设计的智能信息收集解决方案</p>
+                <p>专为群体场景设计的信息收集工具，满足您的多样化需求</p>
             </div>
             
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-brain"></i>
+                        <i class="fas fa-list-ol"></i>
                     </div>
-                    <h3>AI智能接龙</h3>
-                    <p>智能识别群聊内容，一键生成接龙模板，支持复杂格式</p>
-                    <span class="ai-badge">AI智能生成</span>
+                    <h3>智能接龙</h3>
+                    <p>快速创建接龙活动，自动整理参与者信息，支持多种格式和自定义选项</p>
                 </div>
                 
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-edit"></i>
+                        <i class="fas fa-clipboard-list"></i>
                     </div>
-                    <h3>智能问卷</h3>
-                    <p>AI辅助问卷设计，自动推荐问题类型，提升问卷质量</p>
-                    <span class="ai-badge">AI辅助设计</span>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>活动报名</h3>
-                    <p>智能管理报名信息，自动通知提醒，支持人数限制</p>
-                    <span class="ai-badge">智能管理</span>
+                    <h3>问卷与填表</h3>
+                    <p>创建专业问卷，收集反馈数据，支持单选、多选、填空等多种题型</p>
                 </div>
                 
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-calendar-check"></i>
                     </div>
+                    <h3>活动报名</h3>
+                    <p>轻松管理活动报名，自动统计人数，支持设置报名截止时间和人数限制</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-day"></i>
+                    </div>
                     <h3>打卡签到</h3>
-                    <p>智能识别打卡记录，自动统计参与情况，支持位置验证</p>
-                    <span class="ai-badge">AI分析</span>
+                    <p>创建每日打卡任务，追踪参与情况，支持位置签到和图片验证</p>
                 </div>
                 
                 <div class="feature-card">
@@ -668,95 +459,15 @@
                         <i class="fas fa-vote-yea"></i>
                     </div>
                     <h3>投票决策</h3>
-                    <p>智能投票分析，实时结果展示，支持多种投票规则</p>
-                    <span class="ai-badge">智能分析</span>
+                    <p>发起群内投票，快速收集意见，支持匿名投票和结果实时查看</p>
                 </div>
                 
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-chart-line"></i>
+                        <i class="fas fa-chart-pie"></i>
                     </div>
-                    <h3>数据洞察</h3>
-                    <p>AI智能分析收集数据，生成可视化报表，提供决策建议</p>
-                    <span class="ai-badge">AI分析</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- AI Advantage Section -->
-    <section class="ai-advantage" id="ai">
-        <div class="container">
-            <div class="ai-content">
-                <div class="ai-text">
-                    <h2>AI智能接龙的优势</h2>
-                    <p>传统接龙需要手动整理、统计，耗时耗力且容易出错。接龙AI助手利用人工智能技术，彻底改变信息收集方式。</p>
-                    
-                    <ul>
-                        <li>
-                            <i class="fas fa-bolt"></i>
-                            <div>
-                                <strong>智能生成</strong>
-                                <p>AI分析群聊内容，自动生成接龙模板，支持复杂格式和条件</p>
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-sync-alt"></i>
-                            <div>
-                                <strong>自动整理</strong>
-                                <p>实时收集整理信息，自动去重纠错，生成结构化数据报表</p>
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-bell"></i>
-                            <div>
-                                <strong>智能提醒</strong>
-                                <p>AI预测最佳提醒时间，自动发送提醒，提高参与率</p>
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-chart-pie"></i>
-                            <div>
-                                <strong>数据洞察</strong>
-                                <p>智能分析收集数据，发现隐藏模式，提供决策建议</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="ai-visual">
-                    <div class="ai-tag">AI对话演示</div>
-                    <div class="chat-container">
-                        <div class="chat-message received">
-                            <p>我们需要收集班级同学参加周末郊游的信息，包括姓名、是否参加、是否需午餐</p>
-                        </div>
-                        
-                        <div class="chat-message sent">
-                            <p>已为您创建智能接龙模板：<br>
-                            【周末郊游报名】<br>
-                            1. 姓名：<br>
-                            2. 是否参加：✅参加 / ❌不参加<br>
-                            3. 是否需要午餐：🍱需要 / 🚫不需要</p>
-                        </div>
-                        
-                        <div class="chat-message received">
-                            <p>太棒了！再帮我加一个"交通方式"的选项</p>
-                        </div>
-                        
-                        <div class="chat-message sent">
-                            <p>已更新模板：<br>
-                            4. 交通方式：🚗自驾 / 🚌大巴</p>
-                        </div>
-                        
-                        <div class="chat-message received">
-                            <p>谢谢！请分享到班级群</p>
-                        </div>
-                        
-                        <div class="chat-message sent">
-                            <p>已分享到"三年二班"微信群<br>
-                            ✅ 自动收集统计中...</p>
-                        </div>
-                    </div>
+                    <h3>数据统计</h3>
+                    <p>自动生成数据报表，可视化展示收集结果，支持导出Excel和PDF</p>
                 </div>
             </div>
         </div>
@@ -767,26 +478,26 @@
         <div class="container">
             <div class="section-title">
                 <h2>简单三步，轻松使用</h2>
-                <p>无需复杂操作，AI助您快速完成信息收集</p>
+                <p>无需复杂操作，快速创建您的信息收集任务</p>
             </div>
             
             <div class="steps">
                 <div class="step">
                     <div class="step-number">1</div>
-                    <h3>AI创建任务</h3>
-                    <p>输入需求，AI自动生成接龙/问卷模板</p>
+                    <h3>创建任务</h3>
+                    <p>选择任务类型，设置标题、内容和收集选项</p>
                 </div>
                 
                 <div class="step">
                     <div class="step-number">2</div>
-                    <h3>分享到微信群</h3>
-                    <p>一键分享到目标微信群，开始收集</p>
+                    <h3>分享到群</h3>
+                    <p>将生成的小程序卡片分享到微信群</p>
                 </div>
                 
                 <div class="step">
                     <div class="step-number">3</div>
-                    <h3>智能分析结果</h3>
-                    <p>AI自动整理数据，生成可视化报告</p>
+                    <h3>查看结果</h3>
+                    <p>实时查看收集进度，导出整理好的数据</p>
                 </div>
             </div>
         </div>
@@ -799,13 +510,13 @@
                 <div class="footer-about">
                     <h3>
                         <svg width="32" height="32" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="0" y="0" width="100" height="100" rx="15" fill="white"/>
-                            <path d="M30,35 L40,50 L50,35 L60,50 L70,35" stroke="#07C160" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                            <circle cx="50" cy="70" r="8" fill="#07C160"/>
+                            <rect x="10" y="10" width="80" height="80" rx="15" fill="white" />
+                            <path d="M30,40 L40,55 L50,40 L60,55 L70,40" stroke="#3b82f6" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                            <circle cx="50" cy="70" r="5" fill="#f59e0b" />
                         </svg>
                         接龙AI助手
                     </h3>
-                    <p>专为微信群设计的人工智能信息收集工具，帮助班级、公司、社团等群体高效完成接龙、问卷、报名、打卡、填表、投票等各类信息收集任务。</p>
+                    <p>专为微信群设计的信息收集工具，帮助班级、公司、社团等群体高效完成接龙、问卷、报名、打卡、填表、投票等各类信息收集任务。</p>
                     
                     <div class="contact-info">
                         <div class="contact-item">
@@ -833,7 +544,7 @@
             </div>
             
             <div class="copyright">
-                <p>JieLongAI © 2025 版权所有 | 让信息收集更智能</p>
+                <p>JieLongAI © 2025 | 让信息收集更简单</p>
             </div>
         </div>
     </footer>
@@ -859,21 +570,15 @@
         featureCards.forEach(card => {
             card.addEventListener('mouseenter', () => {
                 const icon = card.querySelector('.feature-icon');
-                icon.style.background = 'var(--wechat-green)';
+                icon.style.background = 'var(--primary)';
                 icon.style.color = 'white';
             });
             
             card.addEventListener('mouseleave', () => {
                 const icon = card.querySelector('.feature-icon');
-                icon.style.background = 'var(--wechat-light-green)';
-                icon.style.color = 'var(--wechat-green)';
+                icon.style.background = '#dbeafe';
+                icon.style.color = 'var(--primary)';
             });
-        });
-        
-        // AI对话演示动画
-        const chatMessages = document.querySelectorAll('.chat-message');
-        chatMessages.forEach((msg, index) => {
-            msg.style.animationDelay = `${index * 0.5}s`;
         });
     </script>
 </body>
